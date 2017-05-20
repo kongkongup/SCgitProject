@@ -7,26 +7,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import UTIL.ConnectionManager;
-import VO.Client;
+import VO.Space;
+import VO.Users;
 
-public class DAO {
-	public int insert(Client client){
+public class UsersDAO {
+	
+	//user insert to table "USER"
+	public int insertU(Users user){
 		int result = 0;
 		Connection conn = ConnectionManager.getConnection();
-		String query = "INSERT INTO members "
+		String query = "INSERT INTO USER "
 				+ "VALUES "
 				+ "( "
-				+ "seq.NEXTVAL,?,?,?,?,?,?,? "
+				+ "?,?,?,?,?,? "
 				+ ")";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(query);
-			pstmt.setString(1,client.getMember_Password());
-			pstmt.setString(2,client.getMember_Gender());
-			pstmt.setInt(3,client.getMember_Age());
-			pstmt.setString(4, client.getBirth());
-			pstmt.setString(5, client.getMember_Phone());
-			pstmt.setString(6, client.getMember_Address());
-			pstmt.setString(7, client.getMember_Email());
+			pstmt.setString(1,user.getUser_ID());
+			pstmt.setString(2, user.getPassword());
+			pstmt.setString(3, user.getName());
+			pstmt.setString(4, user.getJumin());
+			pstmt.setString(5, user.getPeriod());
+			pstmt.setString(6, user.getClassRoom());
 			result = pstmt.executeUpdate();
 			if(pstmt!=null)pstmt.close();
 			if(conn!=null)conn.close();
@@ -37,21 +39,15 @@ public class DAO {
 		return result;
 	}
 	
-	public int update(Client client){
+	
+	public int update(Users user){
 		int result = 0;
 		Connection conn = ConnectionManager.getConnection();
 		String query = "UPDATE members "
 				+ "SET "
-				+ "member_Phone = ?, member_Address = ?, member_Email = ?";
+				+ "";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(query);
-			pstmt.setString(1,client.getMember_Password());
-			pstmt.setString(2,client.getMember_Gender());
-			pstmt.setInt(3,client.getMember_Age());
-			pstmt.setString(4, client.getBirth());
-			pstmt.setString(5, client.getMember_Phone());
-			pstmt.setString(6, client.getMember_Address());
-			pstmt.setString(7, client.getMember_Email());
 			result = pstmt.executeUpdate();
 			if(pstmt!=null)pstmt.close();
 			if(conn!=null)conn.close();
@@ -80,7 +76,7 @@ public class DAO {
 		return result;
 	}
 	
-	public ArrayList<Client> select(int id){
+	public ArrayList<Users> selectAllUser(String id){
 		ArrayList result = new ArrayList<>();
 		Connection conn = ConnectionManager.getConnection();
 		ResultSet rs = null;
@@ -89,7 +85,7 @@ public class DAO {
 				+ "WHERE id = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, id);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				
@@ -101,8 +97,8 @@ public class DAO {
 		return result;
 	}
 	
-	public Client selectOne(){
-		Client result = null;
+	public Users selectOneUser(){
+		Users result = null;
 		return result;
 	}
 	
