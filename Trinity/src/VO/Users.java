@@ -7,18 +7,25 @@ public class Users {
 	private String user_ID;
 	private String Password;
 	private String name;
+	private String gender;
 	private String jumin;
+	private String e_Mail;
 	private String period;
 	private String classRoom;
 	private int age;
 	private String birth;
 	
-	public Users(String user_ID, String password, String name, String jumin, String period, String classRoom) {
+	
+
+	public Users(String user_ID, String password, String name, String gender, String jumin, String e_Mail,
+			String period, String classRoom) {
 		super();
 		this.user_ID = user_ID;
-		this.Password = password;
+		Password = password;
 		this.name = name;
+		this.gender = gender;
 		this.jumin = jumin;
+		this.e_Mail = e_Mail;
 		this.period = period;
 		this.classRoom = classRoom;
 	}
@@ -55,6 +62,14 @@ public class Users {
 		this.jumin = jumin;
 	}
 
+	public String getE_Mail() {
+		return e_Mail;
+	}
+
+	public void setE_Mail(String e_Mail) {
+		this.e_Mail = e_Mail;
+	}
+
 	public String getPeriod() {
 		return period;
 	}
@@ -70,14 +85,22 @@ public class Users {
 	public void setClassRoom(String classRoom) {
 		this.classRoom = classRoom;
 	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	@Override
 	public String toString() {
-		return "Users [user_ID=" + user_ID + ", Password=" + Password + ", name=" + name + ", jumin=" + jumin
-				+ ", period=" + period + ", classRoom=" + classRoom + ", age=" + age + ", birth=" + birth + "]";
+		return "Users [user_ID=" + user_ID + ", Password=" + Password + ", name=" + name + ", gender=" + gender
+				+ ", jumin=" + jumin + ", e_Mail=" + e_Mail + ", period=" + period + ", classRoom=" + classRoom
+				+ ", age=" + age + ", birth=" + birth + "]";
 	}
-	
-	
+
 	
 	
 	
