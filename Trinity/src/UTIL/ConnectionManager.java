@@ -8,8 +8,8 @@ public class ConnectionManager {
 	
 	private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	private static String driver = "oracle.jdbc.driver.OracleDriver";
-	private static String uid = "hong";
-	private static String password = "hong";
+	private static String uid = "coben";
+	private static String password = "coben";
 	
 	public ConnectionManager(){
 		
