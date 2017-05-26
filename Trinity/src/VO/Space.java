@@ -1,49 +1,64 @@
 package VO;
 
-public class Space {
+import java.io.Serializable;
+
+public class Space implements Serializable {
 	
-	private int room_id;
-	private String room_Name;
-	private int desk;
-	private int chair;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6810599011875463152L;
+	private String room_name;
+	private String assigned;
+	private int occupancy;
+	private String others;
 	
-	public Space(int room_No, String room_Name,int desk, int chair) {
+	public Space(){
 		super();
-		this.room_id = room_No;
-		this.room_Name = room_Name;
-		this.desk = desk;
-		this.chair = chair;
 	}
-		
-	public int getRoom_id() {
-		return room_id;
+
+	public Space(String room_name, String assigned, int occupancy, String others) {
+		super();
+		this.room_name = room_name;
+		this.assigned = assigned;
+		this.occupancy = occupancy;
+		this.others = others;
 	}
-	public void setRoom_id(int room_No) {
-		this.room_id = room_No;
+
+	public String getRoom_name() {
+		return room_name;
 	}
-	public String getRoom_Name() {
-		return room_Name;
+
+	public void setRoom_name(String room_name) {
+		this.room_name = room_name;
 	}
-	public void setRoom_Name(String room_Name) {
-		this.room_Name = room_Name;
+
+	public String getAssigned() {
+		return assigned;
 	}
-	public int getDesk() {
-		return desk;
+
+	public void setAssigned(String assigned) {
+		this.assigned = assigned;
 	}
-	public void setDesk(int desk) {
-		this.desk = desk;
+
+	public int getOccupancy() {
+		return occupancy;
 	}
-	public int getChair() {
-		return chair;
+
+	public void setOccupancy(int occupancy) {
+		this.occupancy = occupancy;
 	}
-	public void setChair(int chair) {
-		this.chair = chair;
+
+	public String getOthers() {
+		return others;
+	}
+
+	public void setOthers(String others) {
+		this.others = others;
 	}
 	
-	@Override
-	public String toString() {
-		return "Space [room_id="+ room_id +", room_Name=" + room_Name + ", desk=" + desk + ", chair=" + chair + "]";
-	}
+	
+	
 	
 	
 }

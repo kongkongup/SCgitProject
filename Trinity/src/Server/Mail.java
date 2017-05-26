@@ -13,16 +13,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import DAO.UsersDAO;
 import VO.Users;
- 
+
+
+/*2017.05.22 김영현*/
 public class Mail {
 	
-    public Mail() {
-        UsersDAO uDAO = new UsersDAO();
-        String id = "";
-        Users u = uDAO.selectOneUser(id);
+    public Mail(Users u) {
+        
         String email = u.getE_Mail();
-        String message = "";
-    	
+        StringBuffer message = new StringBuffer();
+        message.append("ID: "+u.getUser_ID());
+        message.append(" // password: "+u.getPassword());
+        message.append("  ☆★가입을 축하드립니다.☆★");
+  
+        String neyoung = message.toString();
         Properties p = System.getProperties();
         p.put("mail.smtp.starttls.enable", "true");     // gmail은 무조건 true 고정
         p.put("mail.smtp.host", "smtp.gmail.com");      // smtp 서버 주소
@@ -47,9 +51,9 @@ public class Mail {
             InternetAddress to = new InternetAddress(email);
             msg.setRecipient(Message.RecipientType.TO, to);            
             // 이메일 제목
-            msg.setSubject("<COBEN>강의실/스터디룸 예약 확인", "UTF-8");             
+            msg.setSubject("<COBEN>가입축하", "UTF-8");             
             // 이메일 내용
-            msg.setText(message, "UTF-8");             
+            msg.setText(neyoung, "UTF-8");             
             // 이메일 헤더
             msg.setHeader("content-Type", "text/html");             
             //메일보내기

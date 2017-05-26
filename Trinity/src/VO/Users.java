@@ -1,9 +1,13 @@
 package VO;
 
+import java.io.Serializable;
 
-
-public class Users {
+public class Users implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5919292518797642821L;
 	private String user_ID;
 	private String Password;
 	private String name;

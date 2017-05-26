@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionManager {
 	
-	private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	private static String url = "jdbc:oracle:thin:@localhost:1521:KITA";
 	private static String driver = "oracle.jdbc.driver.OracleDriver";
 	private static String uid = "coben";
 	private static String password = "coben";
@@ -19,7 +19,6 @@ public class ConnectionManager {
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
