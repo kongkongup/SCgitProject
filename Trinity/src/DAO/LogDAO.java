@@ -20,22 +20,20 @@ public class LogDAO {
 		String query = "INSERT INTO reservation_log "
 				+ "VALUES "
 				+ "("
-				+ "log_seq.NEXTVAL,?,?,?,?,?,?,?"
+				+ "log_seq.NEXTVAL,?,?,?,?,?,?"
 				+ ")";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, log.getUser_id());
-			pstmt.setString(2, log.getUser_name());
-			pstmt.setInt(3, log.getStart_time());
-			pstmt.setInt(4, log.getEnd_time());
-			pstmt.setString(5, log.getRoom_name());
-			pstmt.setString(6, log.getUse());
-			pstmt.setString(7, log.getDate());
+			pstmt.setInt(2, log.getStart_time());
+			pstmt.setInt(3, log.getEnd_time());
+			pstmt.setString(4, log.getRoom_name());
+			pstmt.setString(5, log.getUse());
+			pstmt.setString(6, log.getDate());
 			result = pstmt.executeUpdate();
 			if(pstmt!=null)pstmt.close();
 			if(conn!=null)conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
@@ -53,7 +51,6 @@ public class LogDAO {
 			if(pstmt!=null)pstmt.close();
 			if(conn!=null)conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		return result;
@@ -73,21 +70,18 @@ public class LogDAO {
 			while(rs.next()){
 				int rownum = rs.getInt(1);
 				int log_seq = rs.getInt(2);
-				String user_id = rs.getString(3);
-			    String user_name = rs.getString(4);
-				int start_time = rs.getInt(5);
-				int end_time = rs.getInt(6);
-				String room_name = rs.getString(7);
-				String use = rs.getString(8);
-				String date = rs.getString(9);
-				result.add(new Reservation_Log(rownum, log_seq, user_id, user_name,
-						room_name, start_time, end_time, use, date));
+			    String user_id = rs.getString(3);
+				int start_time = rs.getInt(4);
+				int end_time = rs.getInt(5);
+				String room_name = rs.getString(6);
+				String use = rs.getString(7);
+				String date = rs.getString(8);
+				result.add(new Reservation_Log(rownum, log_seq, user_id, room_name, start_time, end_time, use, date));
 				
 			}
 			if(pstmt!=null)pstmt.close();
 			if(conn!=null)conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
@@ -110,19 +104,17 @@ public class LogDAO {
 				int rownum = rs.getInt(1);
 				int log_seq = rs.getInt(2);
 				String user_id = rs.getString(3);
-			    String user_name = rs.getString(4);
-				int start_time = rs.getInt(5);
-				int end_time = rs.getInt(6);
-				String room_name = rs.getString(7);
-				String use = rs.getString(8);
-				String date = rs.getString(9);
-				result.add(new Reservation_Log(rownum, log_seq, user_id, user_name,
+				int start_time = rs.getInt(4);
+				int end_time = rs.getInt(5);
+				String room_name = rs.getString(6);
+				String use = rs.getString(7);
+				String date = rs.getString(8);
+				result.add(new Reservation_Log(rownum, log_seq, user_id,
 						room_name, start_time, end_time, use, date));		
 			}			
 			if(pstmt!=null)pstmt.close();
 			if(conn!=null)conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
@@ -146,18 +138,16 @@ public class LogDAO {
 				int rownum = rs.getInt(1);
 				int log_seq = rs.getInt(2);
 				String user_id = rs.getString(3);
-			    String user_name = rs.getString(4);
-				int start_time = rs.getInt(5);
-				int end_time = rs.getInt(6);
-				String room_name = rs.getString(7);
-				String use = rs.getString(8);
-				result.add(new Reservation_Log(rownum, log_seq, user_id, user_name,
+				int start_time = rs.getInt(4);
+				int end_time = rs.getInt(5);
+				String room_name = rs.getString(6);
+				String use = rs.getString(7);
+				result.add(new Reservation_Log(rownum, log_seq, user_id,
 						room_name, start_time, end_time, use, date));		
 			}			
 			if(pstmt!=null)pstmt.close();
 			if(conn!=null)conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

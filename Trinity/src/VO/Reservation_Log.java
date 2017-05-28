@@ -9,7 +9,6 @@ public class Reservation_Log implements Serializable {
 	private int rownum;
 	private int log_seq;
 	private String user_id;
-	private String user_name;
 	private String room_name;
 	private int start_time;
 	private int end_time;
@@ -20,12 +19,21 @@ public class Reservation_Log implements Serializable {
 		super();
 	}
 	
-	public Reservation_Log(int log_seq, String user_id, String user_name, String room_name, int start_time,
+	public Reservation_Log(int log_seq, String user_id, String room_name, int start_time,
 			int end_time, String use, String date) {
 		super();
 		this.log_seq = log_seq;
+		this.user_id = user_id;		
+		this.room_name = room_name;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		this.use = use;
+		this.date = date;
+	}	
+
+	public Reservation_Log(String user_id, String room_name, int start_time, int end_time, String use, String date) {
+		super();
 		this.user_id = user_id;
-		this.user_name = user_name;
 		this.room_name = room_name;
 		this.start_time = start_time;
 		this.end_time = end_time;
@@ -33,15 +41,12 @@ public class Reservation_Log implements Serializable {
 		this.date = date;
 	}
 
-	
-
-	public Reservation_Log(int rownum, int log_seq, String user_id, String user_name, String room_name, int start_time,
+	public Reservation_Log(int rownum, int log_seq, String user_id, String room_name, int start_time,
 			int end_time, String use, String date) {
 		super();
 		this.rownum = rownum;
 		this.log_seq = log_seq;
 		this.user_id = user_id;
-		this.user_name = user_name;
 		this.room_name = room_name;
 		this.start_time = start_time;
 		this.end_time = end_time;
@@ -63,15 +68,7 @@ public class Reservation_Log implements Serializable {
 
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
-	}
-
-	public String getUser_name() {
-		return user_name;
-	}
-
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
+	}	
 
 	public String getRoom_name() {
 		return room_name;
@@ -115,9 +112,13 @@ public class Reservation_Log implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Reservation_Log [rownum=" + rownum + ", log_seq=" + log_seq + ", user_id=" + user_id + ", user_name="
-				+ user_name + ", room_name=" + room_name + ", start_time=" + start_time + ", end_time=" + end_time
+		return "Reservation_Log [rownum=" + rownum + ", log_seq=" + log_seq + ", user_id=" + user_id + ", room_name=" + room_name + ", start_time=" + start_time + ", end_time=" + end_time
 				+ ", use=" + use + ", date=" + date + "]";
+	}
+	
+	public Object[] toArray(){
+		Object [] result = {rownum+"",user_id,date,start_time+"",end_time,room_name,use};
+		return result;
 	}
 	
 	

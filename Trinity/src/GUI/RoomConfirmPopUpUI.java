@@ -11,15 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class RoomConfirmPopUpUI extends JFrame {
-	
-
-    
-	
-	public static void main(String[] args) {
-		new RoomConfirmPopUpUI();
-	}
 		
-	public RoomConfirmPopUpUI() {
+	public RoomConfirmPopUpUI(String id) {
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension dim = tk.getScreenSize();
 		int xPos = (dim.width / 3) - (this.getWidth() / 2);
@@ -34,21 +27,21 @@ public class RoomConfirmPopUpUI extends JFrame {
 				
 		JLabel label = new JLabel("Reservation Completed!");
 		label.setBackground(Color.WHITE);
-		label.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
-		label.setBounds(105, 58, 214, 35);
+		label.setFont(new Font("Segoe UI Light", Font.PLAIN, 23));
+		label.setBounds(95, 56, 233, 35);
 		getContentPane().add(label);
 		
 		JLabel lblCheckYourEmail = new JLabel("Check Your E-mail :)");
-		lblCheckYourEmail.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
+		lblCheckYourEmail.setFont(new Font("Segoe UI Light", Font.PLAIN, 23));
 		lblCheckYourEmail.setBackground(Color.WHITE);
-		lblCheckYourEmail.setBounds(121, 107, 183, 35);
+		lblCheckYourEmail.setBounds(115, 103, 193, 35);
 		getContentPane().add(lblCheckYourEmail);
 		
 		JButton btnGoToMain = new JButton("go to Main");
 		btnGoToMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					new ShowRoomsUI();
+					new ShowRoomsUI(id);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -56,9 +49,9 @@ public class RoomConfirmPopUpUI extends JFrame {
 				dispose();
 			}
 		});
-		btnGoToMain.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
+		btnGoToMain.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		btnGoToMain.setBackground(new Color(0, 191, 255));
-		btnGoToMain.setBounds(121, 176, 183, 29);
+		btnGoToMain.setBounds(120, 176, 183, 29);
 		getContentPane().add(btnGoToMain);
 			
 		this.setResizable(false);

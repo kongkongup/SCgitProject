@@ -5,22 +5,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import Client.ClientManager;
+import VO.Reservation_Log;
+
 import java.awt.Color;
 import java.awt.Font;
 
 /* 2017.05.23 홍규희*/
 public class RoomConfirmUI extends JFrame {
-	private JTextField tfDateFromDB;
-	private JTextField tfStartTime;
-	private JTextField tfEndTime;
 	private JTextField textField;
 
 /*	public static void main(String[] args) {
 		new RoomConfirmUI();
 	}*/
 	
-	public RoomConfirmUI() {
-		getContentPane().setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
+	public RoomConfirmUI(String id,String room_name,int start_time,
+			int end_time, String date) {
+		
+		ClientManager cm = new ClientManager();
+		getContentPane().setFont(new Font("Consolas", Font.BOLD, 20));
 
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension dim = tk.getScreenSize();
@@ -38,50 +42,29 @@ public class RoomConfirmUI extends JFrame {
 		
 		//예약 확인하세요!
 		JLabel lblConfirm = new JLabel("Confirm Your Reservation!");
-		lblConfirm.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 20));
+		lblConfirm.setFont(new Font("Segoe UI Light", Font.PLAIN, 27));
 		lblConfirm.setBackground(Color.WHITE);
-		lblConfirm.setBounds(299, 10, 256, 58);
+		lblConfirm.setBounds(278, 10, 297, 58);
 		getContentPane().add(lblConfirm);
 		
 		//방이름
-		JLabel lblRoomName = new JLabel("DB- studyRoom name");
+		JLabel lblRoomName = new JLabel(room_name);
 		lblRoomName.setBackground(Color.WHITE);
-		lblRoomName.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
-		lblRoomName.setBounds(269, 78, 256, 37);
+		lblRoomName.setFont(new Font("Segoe UI Light", Font.PLAIN, 22));
+		lblRoomName.setBounds(297, 80, 259, 37);
 		getContentPane().add(lblRoomName);
 		
-		//배정된 교실
-		JLabel lblClass = new JLabel("Assigned to Class");
-		lblClass.setBackground(Color.WHITE);
-		lblClass.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
-		lblClass.setBounds(269, 125, 160, 37);
-		getContentPane().add(lblClass);
-		
-		//수용인원
-		JLabel lblOccupancy = new JLabel("Occupancy");
-		lblOccupancy.setBackground(Color.WHITE);
-		lblOccupancy.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
-		lblOccupancy.setBounds(269, 172, 96, 37);
-		getContentPane().add(lblOccupancy);
-		
-		//기타
-		JLabel lblOthers = new JLabel("Others");
-		lblOthers.setBackground(Color.WHITE);
-		lblOthers.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
-		lblOthers.setBounds(269, 219, 63, 37);
-		getContentPane().add(lblOthers);
-		
 		//예약자 이름
-		JLabel lblDbUserName = new JLabel("user_name from db");
+		JLabel lblDbUserName = new JLabel("[ ID ] "+id);
 		lblDbUserName.setBackground(Color.WHITE);
-		lblDbUserName.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
-		lblDbUserName.setBounds(269, 266, 259, 31);
+		lblDbUserName.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		lblDbUserName.setBounds(297, 136, 259, 31);
 		getContentPane().add(lblDbUserName);
 		
 		//예약 일자
-		JLabel lblDate = new JLabel("Date");
-		lblDate.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
-		lblDate.setBounds(569, 101, 63, 31);
+		JLabel lblDate = new JLabel("[ Date ] "+date);
+		lblDate.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		lblDate.setBounds(297, 186, 259, 31);
 		getContentPane().add(lblDate);
 		
 		/*JSpinner spinner = new JSpinner((SpinnerModel) null);
@@ -89,14 +72,14 @@ public class RoomConfirmUI extends JFrame {
 		getContentPane().add(spinner);*/
 		
 		//예약 시간
-		JLabel lblStartTime = new JLabel("Start Time");
-		lblStartTime.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
-		lblStartTime.setBounds(569, 161, 97, 31);
+		JLabel lblStartTime = new JLabel("[ Start Time ] "+start_time+" : 00");
+		lblStartTime.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		lblStartTime.setBounds(297, 236, 259, 31);
 		getContentPane().add(lblStartTime);
 		
-		JLabel lblEndTime = new JLabel("End Time");
-		lblEndTime.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
-		lblEndTime.setBounds(569, 221, 97, 31);
+		JLabel lblEndTime = new JLabel("[ End Time ] "+end_time+" : 00");
+		lblEndTime.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		lblEndTime.setBounds(297, 286, 259, 31);
 		getContentPane().add(lblEndTime);
 		
 		//확인 버튼
@@ -104,11 +87,17 @@ public class RoomConfirmUI extends JFrame {
 		btnConfirm.setToolTipText("confirm and send to E-mail");
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new RoomConfirmPopUpUI();
-				dispose();
+				if(textField!=null){
+					Reservation_Log log = new Reservation_Log(id, room_name, start_time, end_time, textField.getText(), date);
+					cm.reservation(log);
+					new RoomConfirmPopUpUI(id);
+					dispose();					
+				}else{
+					JOptionPane.showMessageDialog(null, "PLEASE WRITE YOUR USE PURPOSE");
+				}
 			}
 		});
-		btnConfirm.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
+		btnConfirm.setFont(new Font("Segoe UI Light", Font.BOLD, 22));
 		btnConfirm.setBackground(new Color(0, 191, 255));
 		btnConfirm.setBounds(299, 413, 256, 44);
 		getContentPane().add(btnConfirm);
@@ -118,53 +107,26 @@ public class RoomConfirmUI extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					new ShowRoomsUI();
+					new ShowRoomsUI(id);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				dispose();
 			}
 		});
-		btnBack.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
+		btnBack.setFont(new Font("Segoe UI Light", Font.BOLD, 20));
 		btnBack.setBackground(new Color(0, 191, 255));
 		btnBack.setBounds(742, 464, 100, 31);
 		getContentPane().add(btnBack);
 		
 		JLabel lblUse = new JLabel("Use");
-		lblUse.setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 18));
+		lblUse.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
 		lblUse.setBackground(Color.WHITE);
-		lblUse.setBounds(269, 335, 33, 31);
+		lblUse.setBounds(296, 336, 33, 31);
 		getContentPane().add(lblUse);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBackground(Color.WHITE);
-		textPane.setBounds(311, 313, 231, 79);
-		getContentPane().add(textPane);
-		
-		tfDateFromDB = new JTextField();
-		tfDateFromDB.setEnabled(false);
-		tfDateFromDB.setEditable(false);
-		tfDateFromDB.setBounds(569, 130, 136, 21);
-		getContentPane().add(tfDateFromDB);
-		tfDateFromDB.setColumns(10);
-		
-		tfStartTime = new JTextField();
-		tfStartTime.setEnabled(false);
-		tfStartTime.setEditable(false);
-		tfStartTime.setColumns(10);
-		tfStartTime.setBounds(569, 192, 136, 21);
-		getContentPane().add(tfStartTime);
-		
-		tfEndTime = new JTextField();
-		tfEndTime.setEnabled(false);
-		tfEndTime.setEditable(false);
-		tfEndTime.setColumns(10);
-		tfEndTime.setBounds(569, 251, 136, 21);
-		getContentPane().add(tfEndTime);
-		
 		textField = new JTextField();
-		textField.setBounds(310, 309, 245, 83);
+		textField.setBounds(335, 329, 220, 44);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		

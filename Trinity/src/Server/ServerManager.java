@@ -26,7 +26,7 @@ public class ServerManager implements CobenManager {
 		Users checkJumin = uDAO.equalJumin(user.getJumin());
 		if(checkId==null && checkJumin==null){
 			result = uDAO.insertUser(user);
-			Mail m = new Mail(user);
+			//Mail m = new Mail(user);
 		}		
 		return result;
 	}

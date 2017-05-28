@@ -14,8 +14,8 @@ public class Server {
 				System.out.println("hi");
 				Socket soc = sso.accept();
 				System.out.println("wait");
-				ObjectOutputStream oos = new ObjectOutputStream(soc.getOutputStream());
 				ObjectInputStream ois = new ObjectInputStream(soc.getInputStream());
+				ObjectOutputStream oos = new ObjectOutputStream(soc.getOutputStream());
 				Thread t= new Thread(new ServerThread(oos,ois));
 				t.start();
 			}

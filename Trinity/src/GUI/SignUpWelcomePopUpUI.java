@@ -31,10 +31,10 @@ public class SignUpWelcomePopUpUI extends JFrame {
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
 		
-		lblSignUpCompleted = new JLabel("Sign up Completed");
+		lblSignUpCompleted = new JLabel("Sign up Completed!");
 		lblSignUpCompleted.setBackground(Color.WHITE);
-		lblSignUpCompleted.setFont(new Font("Instruction", Font.BOLD, 18));
-		lblSignUpCompleted.setBounds(118, 49, 187, 44);
+		lblSignUpCompleted.setFont(new Font("Segoe UI Light", Font.PLAIN, 23));
+		lblSignUpCompleted.setBounds(115, 49, 193, 44);
 		getContentPane().add(lblSignUpCompleted);
 		
 		btnYes = new JButton("go to Log in");
@@ -44,13 +44,13 @@ public class SignUpWelcomePopUpUI extends JFrame {
 				dispose();
 			}
 		});
-		btnYes.setFont(new Font("Instruction", Font.BOLD, 16));
+		btnYes.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		btnYes.setBackground(new Color(0, 191, 255));
-		btnYes.setBounds(117, 173, 190, 29);
+		btnYes.setBounds(120, 176, 183, 29);
 		getContentPane().add(btnYes);
 		
-		lblWelcome = new JLabel("Welcome!:)");
-		lblWelcome.setFont(new Font("Instruction", Font.BOLD, 18));
+		lblWelcome = new JLabel("Welcome:)");
+		lblWelcome.setFont(new Font("Segoe UI Light", Font.PLAIN, 23));
 		lblWelcome.setBackground(Color.WHITE);
 		lblWelcome.setBounds(157, 103, 110, 44);
 		getContentPane().add(lblWelcome);

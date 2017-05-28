@@ -47,12 +47,12 @@ public class LoginUI extends JFrame {
 		// ID
 		JLabel lblId = new JLabel("ID");
 		lblId.setBounds(492, 155, 42, 21);
-		lblId.setFont(new Font("Instruction", Font.BOLD, 15));
+		lblId.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
 		lblId.setBackground(Color.WHITE);
 		getContentPane().add(lblId);
 		
 		tfID = new JTextField();
-		tfID.setFont(new Font("absender", Font.PLAIN, 16));
+		tfID.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
 		tfID.setBounds(534, 155, 132, 21);
 		getContentPane().add(tfID);
 		tfID.setColumns(10);
@@ -60,10 +60,11 @@ public class LoginUI extends JFrame {
 		// PW
 		JLabel lblPassword = new JLabel("PassWord");
 		lblPassword.setBounds(442, 186, 92, 18);
-		lblPassword.setFont(new Font("Instruction", Font.BOLD, 15));
+		lblPassword.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
 		getContentPane().add(lblPassword);
 
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
 		passwordField.setBounds(534, 183, 132, 21);
 		getContentPane().add(passwordField);
 
@@ -71,7 +72,7 @@ public class LoginUI extends JFrame {
 		btnLogin = new JButton("Log In");
 		btnLogin.setBounds(678, 155, 87, 29);
 		btnLogin.setBackground(new Color(0, 191, 255));
-		btnLogin.setFont(new Font("Instruction", Font.BOLD, 15));
+		btnLogin.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		getContentPane().add(btnLogin);
 		
 		btnLogin.addActionListener(new ActionListener() {
@@ -97,7 +98,7 @@ public class LoginUI extends JFrame {
 		// SignUpButton
 		JLabel lblJoinUs = new JLabel("Join Us!");
 		lblJoinUs.setBounds(596, 245, 88, 31);
-		lblJoinUs.setFont(new Font("Instruction", Font.BOLD, 15));
+		lblJoinUs.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
 		getContentPane().add(lblJoinUs);
 		this.setSize(860, 535);
 		btnLogin.setBounds(678, 147, 132, 58);
@@ -111,7 +112,7 @@ public class LoginUI extends JFrame {
 		});
 		btnSignUp.setBounds(696, 245, 114, 30);
 		btnSignUp.setBackground(new Color(0, 191, 255));
-		btnSignUp.setFont(new Font("Instruction", Font.BOLD, 15));
+		btnSignUp.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
 		getContentPane().add(btnSignUp);
 		
 		// ExitButton
@@ -121,7 +122,7 @@ public class LoginUI extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnExit.setFont(new Font("Instruction", Font.BOLD, 15));
+		btnExit.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
 		btnExit.setBackground(new Color(0, 191, 255));
 		btnExit.setBounds(742, 464, 100, 31);
 		getContentPane().add(btnExit);

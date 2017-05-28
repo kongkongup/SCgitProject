@@ -1,4 +1,5 @@
 package GUI;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,6 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Client.ClientManager;
+import UTIL.BlankCheck;
 import VO.Users;
 
 import javax.swing.JComboBox;
@@ -22,7 +24,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 
 /* 2017.05.23 È«±ÔÈñ*/
-public class SignupUI extends JFrame{
+public class SignupUI extends JFrame {
 	private JTextField textFieldID;
 	private JPasswordField passwordField;
 	private JTextField tfName;
@@ -44,150 +46,219 @@ public class SignupUI extends JFrame{
 	private JButton btnRedundancyCheckForJumin;
 	private ButtonGroup bg;
 	private ClientManager cm;
+	private int i, j = 0;
+	private BlankCheck bCheck;
 
 	public SignupUI() {
 		cm = new ClientManager();
-		getContentPane().setFont(new Font("Arca Majora 3 Bold", Font.PLAIN, 11));
+		bCheck = new BlankCheck();
+		getContentPane().setFont(new Font("Segoe UI Light", Font.BOLD, 15));
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension dim = tk.getScreenSize();
-		
-		int xPos = (dim.width / 4) - (this.getWidth()/2);
-		int yPos = (dim.height / 4) - (this.getHeight()/2);
-		
+
+		int xPos = (dim.width / 4) - (this.getWidth() / 2);
+		int yPos = (dim.height / 4) - (this.getHeight() / 2);
+
 		this.setBounds(xPos, yPos, 860, 530);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("[COBEN] SCIT Studyroom Scheduling System - Sign up");
-		
+
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
-		
+
 		lblJoinUs = new JLabel("Join Us!");
-		lblJoinUs.setBounds(375, 23, 104, 31);
-		lblJoinUs.setFont(new Font("Instruction", Font.BOLD, 22));
+		lblJoinUs.setBounds(375, 42, 104, 31);
+		lblJoinUs.setFont(new Font("Segoe UI Light", Font.PLAIN, 30));
 		getContentPane().add(lblJoinUs);
 		this.setSize(860, 535);
-		
-		//ID
+
+		// ID
 		lblId = new JLabel("ID");
-		lblId.setBounds(369, 92, 18, 31);
-		lblId.setFont(new Font("Instruction", Font.BOLD, 15));
+		lblId.setBounds(362, 97, 18, 31);
+		lblId.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
 		lblId.setBackground(Color.WHITE);
 		getContentPane().add(lblId);
 
 		textFieldID = new JTextField();
-		textFieldID.setBounds(413, 100, 132, 21);
+		textFieldID.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
+		textFieldID.setBounds(408, 107, 132, 21);
 		getContentPane().add(textFieldID);
 		textFieldID.setColumns(10);
-		
-		//PW
+
+		// PW
 		JLabel lblPassword = new JLabel("password");
-		lblPassword.setBounds(315, 129, 72, 31);
-		lblPassword.setFont(new Font("Instruction", Font.BOLD, 15));
+		lblPassword.setBounds(308, 138, 72, 31);
+		lblPassword.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
 		getContentPane().add(lblPassword);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(413, 137, 132, 21);
+		passwordField.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
+		passwordField.setBounds(408, 148, 132, 21);
 		getContentPane().add(passwordField);
 
-		//Name
+		// Name
 		lblName = new JLabel("name");
-		lblName.setFont(new Font("Instruction", Font.BOLD, 15));
+		lblName.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
 		lblName.setBackground(Color.WHITE);
-		lblName.setBounds(348, 173, 39, 26);
+		lblName.setBounds(337, 179, 43, 26);
 		getContentPane().add(lblName);
-		
+
 		tfName = new JTextField();
+		tfName.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
 		tfName.setColumns(10);
-		tfName.setBounds(413, 179, 132, 21);
+		tfName.setBounds(408, 184, 132, 21);
 		getContentPane().add(tfName);
-		
-		//Gender
+
+		// Gender
 		lblGender = new JLabel("gender");
-		lblGender.setFont(new Font("Instruction", Font.BOLD, 15));
-		lblGender.setBounds(333, 209, 54, 31);
+		lblGender.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
+		lblGender.setBounds(326, 215, 54, 31);
 		getContentPane().add(lblGender);
-		
+
 		bg = new ButtonGroup();
 		JRadioButton[] gender = new JRadioButton[2];
 		gender[0] = new JRadioButton("M");
 		gender[0].setBackground(Color.WHITE);
 		gender[0].setBounds(426, 215, 37, 23);
-		
+
 		gender[1] = new JRadioButton("F");
 		gender[1].setBackground(Color.WHITE);
 		gender[1].setBounds(486, 215, 37, 23);
-		
+
 		bg.add(gender[0]);
 		bg.add(gender[1]);
-		
+
 		getContentPane().add(gender[0]);
 		getContentPane().add(gender[1]);
-		
-		//SocialNumber
+
+		// SocialNumber
 		lblSocialNumber = new JLabel("social number");
-		lblSocialNumber.setFont(new Font("Instruction", Font.BOLD, 15));
+		lblSocialNumber.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
 		lblSocialNumber.setBackground(Color.WHITE);
-		lblSocialNumber.setBounds(270, 248, 117, 31);
+		lblSocialNumber.setBounds(270, 252, 110, 31);
 		getContentPane().add(lblSocialNumber);
-		
+
 		tfSocialNumber = new JTextField();
+		tfSocialNumber.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
 		tfSocialNumber.setColumns(10);
-		tfSocialNumber.setBounds(413, 255, 132, 21);
+		tfSocialNumber.setBounds(408, 257, 132, 21);
 		getContentPane().add(tfSocialNumber);
-		
-		//E-mail
+
+		// E-mail
 		lblEmail = new JLabel("e-mail");
-		lblEmail.setFont(new Font("Instruction", Font.BOLD, 15));
-		lblEmail.setBounds(333, 291, 54, 18);
+		lblEmail.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
+		lblEmail.setBounds(326, 295, 54, 18);
 		getContentPane().add(lblEmail);
-		
+
 		tfEmail = new JTextField();
+		tfEmail.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
 		tfEmail.setColumns(10);
-		tfEmail.setBounds(413, 292, 132, 21);
+		tfEmail.setBounds(408, 296, 132, 21);
 		getContentPane().add(tfEmail);
-		
-		//Period
+
+		// Period
 		lblPeriod = new JLabel("period");
-		lblPeriod.setFont(new Font("Instruction", Font.BOLD, 15));
+		lblPeriod.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
 		lblPeriod.setBackground(Color.WHITE);
-		lblPeriod.setBounds(333, 324, 54, 31);
+		lblPeriod.setBounds(326, 325, 54, 31);
 		getContentPane().add(lblPeriod);
-		
+
 		cbPeriod = new JComboBox();
-		cbPeriod.setModel(new DefaultComboBoxModel(new String[] {"select", "33", "32", "31", "30", "29", "28", "27", "26", "25", "24", "23", "22", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"}));
+		cbPeriod.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
+		cbPeriod.setModel(new DefaultComboBoxModel(new String[] { "select", "33", "32", "31", "30", "29", "28", "27",
+				"26", "25", "24", "23", "22", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10",
+				"9", "8", "7", "6", "5", "4", "3", "2", "1" }));
 		cbPeriod.setEditable(true);
 		cbPeriod.setBackground(Color.WHITE);
-		cbPeriod.setBounds(413, 331, 132, 21);
+		cbPeriod.setBounds(408, 335, 132, 21);
 		getContentPane().add(cbPeriod);
-		
-		//ClassABC
-		lblClassabc = new JLabel("classABC");
-		lblClassabc.setFont(new Font("Instruction", Font.BOLD, 15));
-		lblClassabc.setBounds(315, 365, 72, 23);
+
+		// ClassABC
+		lblClassabc = new JLabel("class");
+		lblClassabc.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
+		lblClassabc.setBounds(337, 366, 43, 23);
 		getContentPane().add(lblClassabc);
-		
+
 		cbClass = new JComboBox();
-		cbClass.setModel(new DefaultComboBoxModel(new String[] {"select", "A", "B", "C", "D"}));
+		cbClass.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
+		cbClass.setModel(new DefaultComboBoxModel(new String[] { "select", "A", "B", "C", "D" }));
 		cbClass.setEditable(true);
 		cbClass.setBackground(Color.WHITE);
-		cbClass.setBounds(413, 368, 132, 21);
+		cbClass.setBounds(408, 368, 132, 21);
 		getContentPane().add(cbClass);
-		
-		//SignUp Button
+
+		// SignUp Button
 		btnSignUp = new JButton("sign up!");
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new SignUpWelcomePopUpUI();
-				dispose();
+				if (i == 1 && j == 1) {
+					
+					String password = passwordField.getText();
+					String e_Mail = tfEmail.getText();
+					String name = tfName.getText();
+					String jumin = tfSocialNumber.getText();
+					String id = textFieldID.getText();
+					String classRoom = cbClass.getSelectedItem().toString();
+					String period = cbPeriod.getSelectedItem().toString();
+					String m_f = "";
+					if(gender[0].isSelected()){
+						m_f = gender[0].getText();						
+					}else if(gender[1].isSelected()){
+						m_f= gender[1].getText();
+					}
+					Users user = new Users(id, password, name, m_f , jumin, e_Mail, period, classRoom);
+					if(cm.insertClient(user)==1){
+						new SignUpWelcomePopUpUI();
+						dispose();						
+					}else{
+						JOptionPane.showMessageDialog(null, "CHECK YOUR ID OR CHECK YOUR JUMIN");
+					}
+				} else if (i == 0) {
+					JOptionPane.showMessageDialog(null, "CHECK YOUR SOCIAL NUMBER");
+				} else if (j == 0) {
+					JOptionPane.showMessageDialog(null, "CHECK YOUR ID");
+				}
 			}
 		});
-		
+
+		// BtnSignup
 		btnSignUp.setBounds(304, 435, 241, 31);
 		btnSignUp.setBackground(new Color(0, 191, 255));
-		btnSignUp.setFont(new Font("Instruction", Font.BOLD, 14));
+		btnSignUp.setFont(new Font("Segoe UI Light", Font.BOLD, 19));
 		getContentPane().add(btnSignUp);
-		
-		//Back button
+
+		JButton btnIDreset = new JButton("reset");
+		btnIDreset.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
+		btnIDreset.setBackground(new Color(0, 191, 255));
+		btnIDreset.setBounds(646, 107, 80, 21);
+		getContentPane().add(btnIDreset);
+		btnIDreset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				j = 0;
+				textFieldID.setEditable(true);
+				btnIDreset.setVisible(false);
+			}
+		});
+		btnIDreset.setVisible(false);
+
+		// BtnJuminReset
+		JButton btnJuminReset = new JButton("reset");
+		btnJuminReset.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
+		btnJuminReset.setBackground(new Color(0, 191, 255));
+		btnJuminReset.setBounds(646, 257, 80, 21);
+		getContentPane().add(btnJuminReset);
+		btnIDreset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				i = 0;
+				tfSocialNumber.setEditable(true);
+				btnJuminReset.setVisible(false);
+			}
+		});
+		btnJuminReset.setVisible(false);
+
+		// Back button
 		btnBack = new JButton("back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -195,58 +266,74 @@ public class SignupUI extends JFrame{
 				dispose();
 			}
 		});
-		btnBack.setFont(new Font("Instruction", Font.BOLD, 14));
+		btnBack.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
 		btnBack.setBackground(new Color(0, 191, 255));
 		btnBack.setBounds(732, 466, 110, 31);
 		getContentPane().add(btnBack);
-		
+
 		btnRedundancyCheckForID = new JButton("check");
 		btnRedundancyCheckForID.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String id = textFieldID.getText();
-				if(id!=null){
-					Users result = cm.selectOneClient(id);
-					if(result==null){
-						JOptionPane.showMessageDialog(null, "ID AVAILABLE");
-					}else{
-						JOptionPane.showMessageDialog(null, "ID UNAVAILABLE, PLEASE TRY AGAIN");
-						textFieldID.setText("");
+				if (id != null) {
+					if(bCheck.Check(id)==false){
+						Users result = cm.selectOneClient(id);
+						if (result == null) {
+							JOptionPane.showMessageDialog(null, "ID AVAILABLE");
+							j = 1;
+							textFieldID.setEditable(false);
+							btnIDreset.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(null, "ID UNAVAILABLE, PLEASE TRY AGAIN");
+							textFieldID.setText("");
+						}
+						
+					}else {
+						JOptionPane.showMessageDialog(null, "SPACES NOT ALLOWED");
 					}
-				}else{
+				} else {
 					JOptionPane.showMessageDialog(null, "PLEASE ENTER YOUR ID FIRST");
 				}
 			}
 		});
-		btnRedundancyCheckForID.setFont(new Font("Instruction", Font.BOLD, 12));
+		btnRedundancyCheckForID.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
 		btnRedundancyCheckForID.setBackground(new Color(0, 191, 255));
-		btnRedundancyCheckForID.setBounds(554, 99, 80, 21);
+		btnRedundancyCheckForID.setBounds(554, 107, 80, 21);
 		getContentPane().add(btnRedundancyCheckForID);
-		
+
 		btnRedundancyCheckForJumin = new JButton("check");
-		btnRedundancyCheckForJumin.setFont(new Font("Instruction", Font.BOLD, 12));
+		btnRedundancyCheckForJumin.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
 		btnRedundancyCheckForJumin.setBackground(new Color(0, 191, 255));
-		btnRedundancyCheckForJumin.setBounds(554, 254, 80, 21);
+		btnRedundancyCheckForJumin.setBounds(554, 257, 80, 21);
 		getContentPane().add(btnRedundancyCheckForJumin);
-		
+
 		btnRedundancyCheckForJumin.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String jumin = tfSocialNumber.getText();
-				if(jumin!=null){
-					Users result = cm.equalJumin(jumin);
-					if(result==null){
-						JOptionPane.showMessageDialog(null, "SOCIAL.No AVAILABLE");
-					}else{
-						JOptionPane.showMessageDialog(null, "SOCIAL.No ALREADY USED, PLEASE INPUT ANOTHER NUMBER");
-						tfSocialNumber.setText("");
+				if (jumin != null) {
+					if (bCheck.Check(jumin) == false) {
+						Users result = cm.equalJumin(jumin);
+						if (result == null) {
+							JOptionPane.showMessageDialog(null, "SOCIAL NUMBER AVAILABLE");
+							i = 1;
+							tfSocialNumber.setEditable(false);
+							btnJuminReset.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(null, "SOCIAL NUMBER ALREADY USED, PLEASE INPUT ANOTHER NUMBER");
+							tfSocialNumber.setText("");
+						}
+					} else { // (bCheck.Check(jumin) == true -> ½ºÆäÀÌ½º »ç¿ëµÊ)
+						JOptionPane.showMessageDialog(null, "SPACES NOT ALLOWED");
 					}
-				}else{
-					JOptionPane.showMessageDialog(null, "PLEASE ENTER YOUR SOCIAL.No FIRST");
+				} else { // (jumin == null)
+					JOptionPane.showMessageDialog(null, "ENTER SOCIAL NUMBER");
 				}
 			}
+
 		});
-		
+
 		this.setResizable(false);
 		this.setVisible(true);
 	}
